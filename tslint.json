@@ -1,0 +1,26 @@
+{
+	"extends": [
+		"tslint:latest",
+		"tslint-react"
+	],
+	"rules": {
+		"jsx-equals-spacing": "always",
+		"jsx-curly-spacing": "always",
+		"jsx-self-close": true,
+		"jsx-wrap-multiline": true,
+		"no-console": {
+			"severity": "warning",
+			"options": [
+				"debug",
+				"info",
+				"log",
+				"time",
+				"timeEnd",
+				"trace"
+			]
+		},
+		"no-empty": true,
+		"no-submodule-imports": false,
+		"semicolon": [true, "always", "ignore-interfaces"]
+	}
+}
