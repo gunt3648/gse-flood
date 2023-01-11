@@ -1,3 +1,109 @@
-.weather-card {
-	margin: 10px 0px;
+.accordion-button {
+	position: relative;
+}
+
+.accordion-button:focus {
+	border-color: none !important;
+	box-shadow: none !important;
+}
+
+.dl-button {
+	background-color: #E7F6F2 !important;
+}
+
+.dl-button:not(.collapsed) {
+	color: #395B64 !important;
+}
+
+.dl-border-top {
+	border-top: 1px solid #a5c9ca58 !important;
+}
+
+.dl-first-radius {
+	border-radius: 0.375rem 0.375rem 0px 0px !important;
+}
+
+.dl-last-radius:is(.collapsed) {
+	border-radius: 0px 0px 0.375rem 0.375rem !important;
+}
+
+.dl-date {
+	font-weight: bold;
+}
+
+.dl-weather-code {
+	position: absolute;
+	left: 80px;
+}
+
+.dl-temp {
+	position: absolute;
+	left: 130px;
+}
+
+.dl-max-temp {
+	margin-left: 36px;
+	font-weight: bold;
+}
+
+.dl-min-temp {
+	margin-left: 6px;
+	padding-top: 3px;
+	font-size: 14px;
+}
+
+@media only screen and (max-width: 767px) {
+	.dl-weather-code {
+		width: 80px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.dl-weather-code {
+		left: 140px;
+	}
+
+	.dl-temp {
+		left: 260px;
+	}
+}
+
+.accordion-body {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
+
+	border: 1px solid #E7F6F2;
+	background-color: white;
+
+	position: relative;
+}
+
+.accordion-body p {
+	margin: 0px;
+}
+
+.body-last-radius {
+	border-radius: 0px 0px 0.375rem 0.375rem;
+}
+
+.dl-full-sun {
+	margin-top: 16px;
+}
+
+@media only screen and (max-width: 767px) {
+	.dl-full-wind {
+		margin-top: 16px;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+	.dl-full-wind {
+		position: absolute;
+		top: 16px;
+		left: 294px;
+	}
 }

@@ -7,7 +7,6 @@ import Daily from './components/Daily';
 
 function App() {
 	const weatherConfig = require("./other/open-meteo.json");
-	const [timezone, setTimezone] = useState<string>("");
 	const [hourlyUnits, setHourlyUnits] = useState(null);
 	const [dailyUnits, setDailyUnits] = useState(null);
 	const [hourlyData, setHourlyData] = useState(null);
@@ -25,7 +24,6 @@ function App() {
 	}, [weatherConfig]);
 
 	function extractResponse(weather: any) {
-		setTimezone(weather.timezone_abbreviation);
 		setHourlyUnits(weather.hourly_units);
 		setDailyUnits(weather.daily_units);
 		setHourlyData(weather.hourly);
@@ -33,29 +31,43 @@ function App() {
 	}
 
 	return (
-		<div className="container">
+		<>
 			{/* App header */}
-			<div className="row">
-				<h2 className="app-title">Weather Forecast - Tokyo</h2>
+			<div className="app-header">
+				<h2 className="app-title">
+					<div className="container">
+						HEPTAGRAM
+					</div>
+				</h2>
+				<h5 className="app-location">
+					<div className="container">
+						Location: India
+					</div>
+				</h5>
 			</div>
 
-			{/* Hourly forecast */}
-			<div className="row">
-				<h3>Hourly forecast</h3>
-				<Hourly units={hourlyUnits} data={hourlyData}></Hourly>
-			</div>
+			<div className="container">
+				{/* Hourly forecast */}
+				<div className="row app-section">
+					<h3>Hourly Weather</h3>
+					<Hourly units={hourlyUnits} data={hourlyData}></Hourly>
+				</div>
 
-			{/* Daily forecast */}
-			<div className="row">
-				<h3>Daily forecast</h3>
-				<Daily units={dailyUnits} data={dailyData}></Daily>
-			</div>
+				<div className="row app-section">
+					{/* Daily forecast */}
+					<div className="col-12 col-lg-8 app-forecast">
+						<h3>Daily Weather</h3>
+						<Daily units={dailyUnits} data={dailyData}></Daily>
+					</div>
 
-			{/* Flood prediction */}
-			<div className="row">
-				<h3>Flood prediction</h3>
+					{/* Flood prediction */}
+					<div className="col-12 col-lg-4 app-forecast">
+						<h3>Flood Prediction</h3>
+					</div>
+				</div>
+				<br />
 			</div>
-		</div>
+		</>
 	);
 }
 
