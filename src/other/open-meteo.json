@@ -1,6 +1,6 @@
 {
-	"lat": "35.69",
-	"long": "139.69",
+	"lat": "19.07",
+	"long": "72.88",
 	"hourly": "temperature_2m,apparent_temperature,weathercode",
 	"daily": "weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,sunrise,sunset,windspeed_10m_max,windgusts_10m_max,winddirection_10m_dominant",
 	"timezone": "Asia%2FTokyo"
