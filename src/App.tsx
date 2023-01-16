@@ -4,6 +4,9 @@ import axios from 'axios';
 
 import Hourly from './components/Hourly';
 import Daily from './components/Daily';
+import Flood from './components/Flood';
+import { db } from './utils/firebase';
+import { get, ref } from 'firebase/database';
 
 function App() {
 	const weatherConfig = require("./other/open-meteo.json");
@@ -11,16 +14,24 @@ function App() {
 	const [dailyUnits, setDailyUnits] = useState(null);
 	const [hourlyData, setHourlyData] = useState(null);
 	const [dailyData, setDailyData] = useState(null);
+	const [floodData, setFloodData] = useState(null);
 
 
 	function getWeather() {
 		return axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${weatherConfig.lat}&longitude=${weatherConfig.long}&hourly=${weatherConfig.hourly}&daily=${weatherConfig.daily}&timezone=${weatherConfig.timezone}`);
 	}
 
+	function getPrediction() {
+		return get(ref(db, 'Prediction'));
+	}
+
 	useEffect(() => {
 		getWeather().then(response => {
 			extractResponse(response.data);
 		});
+		getPrediction().then(response => {
+			setFloodData(response.val());
+		})
 	}, [weatherConfig]);
 
 	function extractResponse(weather: any) {
@@ -63,6 +74,7 @@ function App() {
 					{/* Flood prediction */}
 					<div className="col-12 col-lg-4 app-forecast">
 						<h3>Flood Prediction</h3>
+						<Flood data={floodData}></Flood>
 					</div>
 				</div>
 				<br />

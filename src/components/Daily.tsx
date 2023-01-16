@@ -4,8 +4,6 @@ import moment from 'moment';
 import { convertWeatherCode, degToCompass } from '../utils/function';
 
 function Daily(props: any) {
-	console.log(props.data)
-
 	const weatherAccordion = [];
 	for (let i = 0; props.data && i < props.data.time.length && i < 24; i++) {
 		const date = new Date(props.data.time[i]);
