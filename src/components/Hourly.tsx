@@ -18,7 +18,7 @@ function Hourly(props: any) {
 				<div className="card">
 					<div className="card-body">
 						<h5 className="card-title">{time}</h5>
-						<h6 className="card-subtitle mb-2 text-muted code">{weatherCode}</h6>
+						<h6 className="card-subtitle mb-2 text-muted code">{weatherCode ? weatherCode : "Unavailable"}</h6>
 						<p className="card-text mb-2 temp">{temparature + " " + tempUnit}</p>
 						<p className="card-text humid">Feels Like {feelslike + tempUnit.replace("C", "")}</p>
 					</div>

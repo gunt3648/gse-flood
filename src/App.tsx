@@ -9,15 +9,20 @@ import { db } from './utils/firebase';
 import { get, ref } from 'firebase/database';
 
 function App() {
-	const weatherConfig = require("./other/open-meteo.json");
+	const weatherConfig = {};
+	const [location, setLocation] = useState("");
 	const [hourlyUnits, setHourlyUnits] = useState(null);
 	const [dailyUnits, setDailyUnits] = useState(null);
 	const [hourlyData, setHourlyData] = useState(null);
 	const [dailyData, setDailyData] = useState(null);
 	const [floodData, setFloodData] = useState(null);
 
+	function getConfig() {
+		return get(ref(db, 'config'));
+	}
 
-	function getWeather() {
+
+	function getWeather(weatherConfig: any) {
 		return axios.get(`https://api.open-meteo.com/v1/forecast?latitude=${weatherConfig.lat}&longitude=${weatherConfig.long}&hourly=${weatherConfig.hourly}&daily=${weatherConfig.daily}&timezone=${weatherConfig.timezone}`);
 	}
 
@@ -26,13 +31,16 @@ function App() {
 	}
 
 	useEffect(() => {
-		getWeather().then(response => {
-			extractResponse(response.data);
-		});
-		getPrediction().then(response => {
-			setFloodData(response.val());
+		getConfig().then(snap => {
+			setLocation(snap.val().location);
+			getWeather(snap.val()).then(response => {
+				extractResponse(response.data);
+			});
+			getPrediction().then(response => {
+				setFloodData(response.val());
+			})
 		})
-	}, [weatherConfig]);
+	}, []);
 
 	function extractResponse(weather: any) {
 		setHourlyUnits(weather.hourly_units);
@@ -52,7 +60,7 @@ function App() {
 				</h2>
 				<h5 className="app-location">
 					<div className="container">
-						Location: India
+						Location: {location}
 					</div>
 				</h5>
 			</div>

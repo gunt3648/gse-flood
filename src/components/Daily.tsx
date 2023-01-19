@@ -27,7 +27,7 @@ function Daily(props: any) {
 				<h2 className="accordion-header" id={"heading" + i}>
 					<button className={`accordion-button ${i !== 0 ? "collapsed dl-border-top" : ""} dl-button ${i === 0 ? "dl-first-radius" : ""}  ${i === props.data.time.length - 1 ? "dl-last-radius" : ""}`} type="button" data-bs-toggle="collapse" data-bs-target={"#collapse" + i} aria-expanded="true" aria-controls={"collapse" + i}>
 						<span className="dl-date">{formattedDate}</span>
-						<span className="dl-weather-code">{weatherCode}</span>
+						<span className="dl-weather-code">{weatherCode ? weatherCode : "Unavailable"}</span>
 						<div className="dl-temp">
 							<span className="dl-max-temp">{maxTemparature}</span>
 							<span className="dl-min-temp">/ {minTemparature + " " + tempUnit}</span>
